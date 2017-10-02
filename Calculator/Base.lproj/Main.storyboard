@@ -161,8 +161,12 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NSo-wE-8Qv">
                                                                 <rect key="frame" x="0.0" y="0.0" width="78.5" height="115.5"/>
+                                                                <color key="backgroundColor" red="0.64547151327133179" green="0.78938448429107666" blue="0.84097021818161011" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                                                <state key="normal" title=" "/>
+                                                                <state key="normal" title="C"/>
+                                                                <connections>
+                                                                    <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="B7z-5U-s9Y"/>
+                                                                </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a1B-5x-P3g">
                                                                 <rect key="frame" x="88.5" y="0.0" width="78" height="115.5"/>
