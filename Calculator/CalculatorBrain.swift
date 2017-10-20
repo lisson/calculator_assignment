@@ -35,26 +35,37 @@ struct CalculatorBrain{
         "-" : Operation.binaryOperation({$0 - $1}),
         "÷" : Operation.binaryOperation({$0/$1}),
         "=" : Operation.equals,
-        "C" : Operation.constant(0)
     ]
     
 
     
     mutating func performOperation(_ symbol: String)
     {
+        if symbol == "C" {
+            accumulator = 0
+            description = " "
+            pendingBinaryOperation = nil
+            return
+        }
         if let op = operations[symbol] {
             switch op {
             case .constant(let value):
                 accumulator = value
+                description = description + String(accumulator!)
             case .unaryOperation(let function):
                 if accumulator != nil
                 {
                     accumulator = function(accumulator!)
+                    description = symbol + "(" + description + ")"
                 }
             case .binaryOperation(let function):
-                if accumulator != nil{
+                if accumulator != nil {
+                    description = description + symbol
+                    if pendingBinaryOperation != nil{
+                        performPendingBinaryOperation()
+                    }
                     pendingBinaryOperation = PendingBinaryOperation(function: function, firstOperand: accumulator!)
-                    accumulator = nil
+                    //accumulator = nil
                 }
             case .equals:
                 performPendingBinaryOperation()
@@ -71,6 +82,8 @@ struct CalculatorBrain{
     }
     
     private var pendingBinaryOperation:PendingBinaryOperation?
+    private var resultIsPending:Bool?
+    public var description:String = " "
     
     private struct PendingBinaryOperation {
         let function: (Double, Double) -> Double
@@ -84,6 +97,7 @@ struct CalculatorBrain{
     mutating func setOperand(_ operand: Double)
     {
         accumulator = operand
+        description = description + String(operand)
     }
     
     var result: Double?

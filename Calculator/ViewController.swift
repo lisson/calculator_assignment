@@ -59,16 +59,17 @@ class ViewController: UIViewController {
         if UserIsTyping {
             brain.setOperand(displayValue)
             UserIsTyping = false
-            
         }
         UserIsTyping = false
         let op = sender.currentTitle!
         brain.performOperation(op)
         if let result = brain.result{
             displayValue = result
+            sequence.text = brain.description
         }
     }
 
+    @IBOutlet weak var sequence: UILabel!
     @IBOutlet weak var display: UILabel!
 }
 
